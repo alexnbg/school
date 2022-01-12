@@ -3,7 +3,7 @@ from school_class import School_class
 from student import Student
 
 
-curent_school = School()
+current_school = School()
 
 def _quit():
     quit()
@@ -12,7 +12,7 @@ def _quit():
 def _print_main_menu():
     print('\nOptions:')
     print('[1] - Add a class')
-    if len(curent_school.list_classes) > 0:
+    if len(current_school.list_classes) > 0:
         print('[2] - List all classes')
         print('[3] - Remove a class')
     print('[0] - Quit program')
@@ -25,11 +25,11 @@ def _main_menu():
             if user_input == 0:
                 _quit()
             elif user_input == 1:
-                curent_school.add_class(input('Enter class name: '))
+                current_school.add_class(input('Enter class name: '))
                 _print_main_menu()
-            elif user_input == 2 and len(curent_school.list_classes) > 0:
+            elif user_input == 2 and len(current_school.list_classes) > 0:
                 print('2')
-            elif user_input == 3 and len(curent_school.list_classes) > 0:
+            elif user_input == 3 and len(current_school.list_classes) > 0:
                 print('3')
             else:
                 print('   This is not a valid entry!')
