@@ -16,4 +16,4 @@ class School:
         print ('\nClasses:')
         for sch_class in self.list_classes:
             print (sch_class.name)
-        print ('\n ')
+        print ('\n')

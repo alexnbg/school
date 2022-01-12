@@ -5,6 +5,8 @@ from student import Student
 
 current_school = School()
 
+# some notes
+
 def _quit():
     quit()
 
