@@ -5,6 +5,9 @@ from student import Student
 from save_load import save_json
 from save_load import load_json
 
+import utilities
+
+
 current_school = School()
 
 # some notes
@@ -85,7 +88,7 @@ def _main_menu():
             #     _anykey_continue()
             #     _print_main_menu()
             # elif user_input == 4 and len(current_school.list_classes) > 0:
-            #     current_school.print_classes_by_grade()
+            #     current_school.print_all_classes()
             #     _anykey_continue()
             #     _print_main_menu()
             elif user_input == 7 and current_school.list_classes:
@@ -93,7 +96,8 @@ def _main_menu():
                 _statistic_menu()
                 _print_main_menu()
             elif user_input == 8:
-                current_school = load_json()
+                if load_json() is School:
+                    current_school = load_json()
                 _anykey_continue()
                 _print_main_menu()
             elif user_input == 9:

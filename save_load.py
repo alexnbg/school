@@ -6,7 +6,7 @@ import json
 
 
 
-file_name = 'data.txt'
+file_name = 'data.json'
 
 
 def save_json(school:School):
@@ -29,7 +29,7 @@ def save_json(school:School):
                     saved_students += 1
 
         with open(file_name, 'w') as outfile:
-            json.dump(data, outfile, indent='    ')
+            json.dump(data, outfile, indent=4)
         
         print (f'\nSave successful! Saved {saved_classes} classes and {saved_students} students')
 
@@ -37,15 +37,16 @@ def save_json(school:School):
         print('\nNothing to save!')
 
 def load_json():
-    current_school = School()
-
-    loaded_classes = 0
-    loaded_students = 0
 
     with open(file_name) as json_file:
         data = json.load(json_file)
 
     if data:
+        current_school = School()
+
+        loaded_classes = 0
+        loaded_students = 0
+
         for key_c, value_c in data.items():
             new_class = School_class(key_c)
             if value_c:
@@ -56,9 +57,12 @@ def load_json():
                     loaded_students += 1
             current_school.add_class(new_class)
             loaded_classes += 1
+        
+        print (f'\nLoad successful! Loaded {loaded_classes} classes and {loaded_students} students.')
+
+        return current_school
     else:
         print('The file is empty!')
-    
-    print (f'\nLoad successful! Loaded {loaded_classes} classes and {loaded_students} students.')
+        return '0'
 
-    return current_school
+    

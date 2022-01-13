@@ -1,12 +1,12 @@
 class Student:
 
-    def __init__(self, name, age, sex):
+    def __init__(self, name:str, age:int, sex:str):
         self.name = name
         self.age = age
         self.sex = sex
         self.list_grades = []
 
-    def add_grade(self, grade):
+    def add_grade(self, grade:int):
         self.list_grades.append(grade)
     
     def delete_grades(self):

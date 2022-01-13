@@ -9,13 +9,13 @@ class School_class:
     def add_student(self, student:Student):
         self.list_students.append(student)
     
-    def add_new_student(self, name, age, sex):
+    def add_new_student(self, name:str, age:int, sex:str):
         self.list_students.append(Student(name, age, sex))
     
     def remove_student(self, name:str):
         for student in self.list_students:
             if name == student.name:
-                self.list_students(student)
+                self.list_students.remove(student)
     
     @property
     def get_average(self):
