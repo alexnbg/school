@@ -96,8 +96,9 @@ def _main_menu():
                 _statistic_menu()
                 _print_main_menu()
             elif user_input == 8:
-                if load_json() is School:
-                    current_school = load_json()
+                temp = load_json()
+                if isinstance(temp, School):
+                    current_school = temp
                 _anykey_continue()
                 _print_main_menu()
             elif user_input == 9:

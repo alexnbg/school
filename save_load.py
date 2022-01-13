@@ -63,6 +63,4 @@ def load_json():
         return current_school
     else:
         print('The file is empty!')
-        return '0'
-
     
