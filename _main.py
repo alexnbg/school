@@ -61,7 +61,7 @@ def _print_statistic_menu():
     print('[2] - List classes by average grade')
     print('[3] - List classes by average age')
     print('[4] - List top students')
-    print('[5] - List gender by average grade')
+    print('[5] - List average grade by gender')
     print('[0] - Back to main menu')
 
 def _main_menu():
@@ -226,10 +226,10 @@ def _statistic_menu():
                 print('Number of classes'.ljust(35), len(current_school.list_classes))
                 print('Number of all students'.ljust(35), sum([len(x.list_students) for x in current_school.list_classes]))
                 print('Average grade of all classes'.ljust(35), round(sum([x.get_average for x in current_school.list_classes])/len(current_school.list_classes),2))
-                print('Average grade of all students'.ljust(35), 'missing')
-                print('Average age of all students'.ljust(35), 'missing')
-                print('Number of boys'.ljust(35), 'missing')
-                print('Number of girls'.ljust(35), 'missing')
+                print('Average grade of all students'.ljust(35), round(utilities.average(sum([x.get_list_average_grade() for x in current_school.list_classes], [])), 2))
+                print('Average age of all students'.ljust(35), round(utilities.average(sum([x.get_list_age() for x in current_school.list_classes], [])), 2))
+                print('Number of boys'.ljust(35), sum([x.get_students_by_gender('boy') for x in current_school.list_classes]))
+                print('Number of girls'.ljust(35), sum([x.get_students_by_gender('girl') for x in current_school.list_classes]))
                 print('')
                 _anykey_continue()
                 _print_statistic_menu()
@@ -247,15 +247,27 @@ def _statistic_menu():
                 _print_statistic_menu()
             if user_input == 4:
                 # List top students
-                print('- not implemented yet -')
+                list_all_students = []
+                for sch_class in current_school.list_classes:
+                    for stud in sch_class.list_students:
+                        list_all_students.append((stud.get_average, stud.name, sch_class.name))
+                list_all_students = sorted(list_all_students, key=lambda x:x[0], reverse=True)
+                print('\nStudents by average grade:')
+                print('Name'.ljust(21), 'Class'.ljust(11), 'Average grade')
+                for item in list_all_students:
+                    print(str(item[1]).ljust(21), str(item[2]).ljust(11), round(item[0], 2))
 
-
+                print('\n- end of list -')
+                _anykey_continue()
                 _print_statistic_menu()
             if user_input == 5:
                 # List gender by average grade
-                print('- not implemented yet -')
-
-
+                print('\nAverage grades by gender:')
+                print('boys  - ', round(
+                    utilities.average(sum(
+                        [x.get_list_average_grade_by_gender('boy') for x in current_school.list_classes], [])), 
+                        2))
+                print('girls - ', round(utilities.average(sum([x.get_list_average_grade_by_gender('girl') for x in current_school.list_classes], [])), 2))
                 _print_statistic_menu()
             else:
                 print('   This is not a valid entry!')

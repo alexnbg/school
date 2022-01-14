@@ -1,4 +1,5 @@
 from student import Student
+import utilities
 
 class School_class:
 
@@ -27,7 +28,32 @@ class School_class:
             return average
         else:
             return 0
+
+    def get_students_by_gender(self, sex:str):
+        if self.list_students:
+            list_gender = [x.sex for x in self.list_students if x.sex == sex]
+            return len(list_gender)
+        else:
+            return 0
     
+    def get_list_average_grade(self):
+        if self.list_students:
+            return [x.get_average for x in self.list_students]
+        else:
+            return 0
+    
+    def get_list_average_grade_by_gender(self, sex:str):
+        if self.list_students:
+            return [x.get_average for x in self.list_students if x.sex == sex]
+        else:
+            return 0
+    
+    def get_list_age(self):
+        if self.list_students:
+            return [x.age for x in self.list_students]
+        else:
+            return 0
+
     def print_list(self):
         print (f'\nStudents in {self.name} class:')
         if self.list_students:
